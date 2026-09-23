@@ -1,31 +1,21 @@
 file=open("sutaz_vbehu.txt","r")
-meno=""
-cas=""
-max_cas=0
-max_meno=""
 pocitadlo=0
-for riadok in file:
-    riadok = riadok.strip()
-    for char in riadok:
-        if char.isdigit():
-            cas+=str(char)
-        if char!=" " and not char.isdigit():
-            meno+=char
-
+min_cas=0
+min_meno=0
+for line in file:
+    line=line.strip()
+    meno,cas=line.split()
     if pocitadlo==0:
-        max_cas=int(cas)
-        max_meno=meno
-    elif int(cas)<max_cas:
-        max_cas=int(cas)
-        max_meno=meno
+        min_cas=int(cas)
+    if int(cas)<min_cas:
+        min_cas=int(cas)
+        min_meno=meno
 
-    print("Súťažiaci",meno,"dobehol do cieľa za",cas, "sekund")
-    meno=""
-    cas=""
+    print("Súťažiaci", meno,"dobehol do cieľa za",cas,"sekund")
+
     pocitadlo+=1
 
-minuty=int(max_cas)//60
-sekundy=int(max_cas)%60
-
-print("Počet zúčastnených športovcov:", pocitadlo)
-print("Najrychlejsi bol ", max_meno," s casom : ", minuty," minut a ",sekundy," sekund")
+print("Pocet zucastnenych sportovcov:",pocitadlo)
+minuty=min_cas//60
+sekundy=min_cas%60
+print("Najrychlejsi bol", min_meno,"dobehol do ciela za",minuty,"minut a",sekundy,"sekund")
